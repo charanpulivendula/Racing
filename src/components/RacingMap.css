@@ -1,0 +1,8 @@
+.racing {
+    background-image: url('../Assets/Austin_raceline.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+}
