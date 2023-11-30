@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import sampleCoordinates from '../Assets/Austin.json';
+// import sampleCoordinates from '../Assets/Austin.json';
 import racingcar from '../Assets/racing_car.png';
 
 const RacingMap2 = () => {
   const [carPosition, setCarPosition] = useState({ x: 0, y: 0 });
+  const [coordinates, setCoordinates] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/coordinates');
+        const data = await response.json();
+        setCoordinates(data);
+      } catch (error) {
+        console.error('Error fetching coordinates:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const maxX = 1750; // Maximum x-value
@@ -15,21 +30,21 @@ const RacingMap2 = () => {
     // Car animation
     let i = 0;
     const interval = setInterval(() => {
-      const rawX = sampleCoordinates[i][0];
-      const rawY = sampleCoordinates[i][1];
+      const rawX = coordinates[i][0];
+      const rawY = coordinates[i][1];
       const scaledX = rawX * scaleX;
       const scaledY = -(rawY) * scaleY;
 
-      setCarPosition({ x: scaledX, y: scaledY });
+    setCarPosition({ x: scaledX, y: scaledY });
 
       i++;
-      if (i === sampleCoordinates.length) {
+      if (i === coordinates.length) {
         clearInterval(interval);
       }
     }, 10); // Update every 0.01 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [coordinates]);
 
   return (
     <div className='racing flex-col h-1/2'>
