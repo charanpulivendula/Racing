@@ -1,11 +1,10 @@
-import express from "express";
+const express = require('express');
+const coordinatesData = require('./Austin.json');
 const app = express();
 const port = 8080;
+const cors = require('cors')
 
-const coordinatesData = [
-  [/* coordinate 1 */],
-  [/* coordinate 2 */],
-];
+app.use(cors())
 
 app.get('/api/coordinates', (req, res) => {
   res.json(coordinatesData);

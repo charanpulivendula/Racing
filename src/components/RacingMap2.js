@@ -20,6 +20,7 @@ const RacingMap2 = () => {
 
     fetchData();
   }, []);
+  console.log(coordinates);
 
   useEffect(() => {
     const maxX = 1750; // Maximum x-value
@@ -28,9 +29,9 @@ const RacingMap2 = () => {
     const scaleX = 583.33 / maxX; // Adjust the scale based on your desired width
     const scaleY = 400 / maxY; // Adjust the scale based on your desired height
 
-    const dotsArray = coordinates.map((coord) => {
-      const rawX = coordinates[i][0];
-      const rawY = coordinates[i][1];
+    const dotsArray = coordinates.map((coordinate) => {
+      const rawX = coordinate[0];
+      const rawY = coordinate[1];
       const scaledX = rawX * scaleX;
       const scaledY = -(rawY) * scaleY;// Adjust for the y-axis range
 
