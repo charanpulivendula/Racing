@@ -30,7 +30,7 @@ const Speed = ()=>{
                 <div className="speed-box">
                     <div className="box">
                     <span className="box-header">Current</span>
-                    <span className="box-value">{currentSpeed}</span>
+                    <span className="box-value-current">{currentSpeed}</span>
                     </div>
                 </div>
                 <div className="speed-box">

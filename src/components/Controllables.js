@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import steering_img from '../Assets/steering.png';
+import steering_img from '../Assets/steering2.png';
 import ProgressBar from './ProgressBar';
 const Controllables = ()=>{
     const [steering,setSteering] = useState(0);
@@ -17,10 +17,9 @@ const Controllables = ()=>{
     return (
         <div className="controllable w-1/4 flex-col">
             <div className="steering h-1/4 flex">
-                <div className="steering-image w-1/2 flex justify-start m-2">
+                <div className="steering-image w-1/2 flex justify-center">
                 <img
                     src={steering_img}
-                    width={80}
                     alt="steering"
                     style={{ transform: `rotate(${steering}deg)`,
                     transition: 'transform 0.5s ease' }}

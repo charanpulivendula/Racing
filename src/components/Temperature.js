@@ -1,5 +1,5 @@
 import { useState } from "react";
-import car_temp from '../Assets/car_temp.png';
+import car_temp from '../Assets/car_temperature.png';
 import './Temperature.css'
 const Temperature = ()=>{
     const [temperature,setTemperature] = useState([36,36,36,36]);
@@ -13,7 +13,7 @@ const Temperature = ()=>{
                     {temperature[1]}&deg;C
                 </div>
             </div>
-            <div className="image w-1/2 flex justify-center">
+            <div className="image w-1/2 flex justify-center h-4/6">
                 <img src={car_temp} height={200} width = {80} alt = "car"/>
             </div>
             <div className="temp-box flex-col w-1/4 mt-5">
