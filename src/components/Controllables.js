@@ -1,22 +1,22 @@
-import { useState,useEffect } from 'react';
-import steering_img from '../Assets/steering.png';
+import steering_img from '../Assets/steering2.png';
 import ProgressBar from './ProgressBar';
+import './Controllables.css'
 const Controllables = ()=>{
-    const [steering,setSteering] = useState(0);
-    useEffect(() => {
-        const getRandomAngle = () => Math.floor(Math.random() * 361) - 180;
+    // const [steering,setSteering] = useState(0);
+    // useEffect(() => {
+    //     const getRandomAngle = () => Math.floor(Math.random() * 361) - 180;
     
-        const interval = setInterval(() => {
-          const randomAngle = getRandomAngle();
-          setSteering(randomAngle);
-        }, 1000);
+    //     const interval = setInterval(() => {
+    //       const randomAngle = getRandomAngle();
+    //       setSteering(randomAngle);
+    //     }, 1000);
     
-        return () => clearInterval(interval);
-      }, []);
+    //     return () => clearInterval(interval);
+    //   }, []);
     
     return (
         <div className="controllable w-1/4 flex-col">
-            <div className="steering h-1/4 flex">
+            {/* <div className="steering h-1/4 flex">
                 <div className="steering-image w-1/2 flex justify-start m-2">
                 <img
                     src={steering_img}
@@ -29,7 +29,7 @@ const Controllables = ()=>{
                 <div className='steering-val flex place-items-center text-2xl'>
                     {steering}
                 </div>
-            </div>
+            </div> */}
             <div className="controls flex-col h-3/4 justify-evenly p-8 border-2 border-black m-3">
                 <div className='h-1/3 throttle flex-col justify-start'>
                     <h1>
