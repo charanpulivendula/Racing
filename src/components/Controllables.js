@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import steering_img from '../Assets/steering.png';
+import steering_img from '../Assets/steering2.png';
 import ProgressBar from './ProgressBar';
 const Controllables = ()=>{
     const [steering,setSteering] = useState(0);
