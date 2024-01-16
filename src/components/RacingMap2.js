@@ -91,39 +91,25 @@
 
 // export default RacingMap2;
 import React, { useState, useEffect } from 'react';
+import sampleCoordinates from '../Assets/monza_centerline.json';
 import './RacingMap.css';
 
 const RacingMap2 = () => {
   const [dots, setDots] = useState([]);
   const [carPosition, setCarPosition] = useState({ x: 0, y: 0 });
-  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/coordinates');
-        const data = await response.json();
-        setCoordinates(data);
-      } catch (error) {
-        console.error('Error fetching coordinates:', error);
-      }
-    };
+    const maxX = 1750; // Maximum x-value
+    const maxY = 1200; // Maximum y-value (800 - (-400))
 
-    fetchData();
-  }, []);
+    const scaleX = 583.33 / maxX; 
+    const scaleY = 400 / maxY; 
 
-  useEffect(() => {
-    const maxX = 1750;
-    const maxY = 1200;
-
-    const scaleX = 583.33 / maxX;
-    const scaleY = 400 / maxY;
-
-    const dotsArray = coordinates.map((coord) => {
-      const rawX = coord[1]; // x_m column
-      const rawY = coord[2]; // y_m column
+    const dotsArray = sampleCoordinates.map((coord) => {
+      const rawX = coord[0];
+      const rawY = coord[1];
       const scaledX = rawX * scaleX;
-      const scaledY = -(rawY) * scaleY;
+      const scaledY = -(rawY) * scaleY; // Adjust for the y-axis range
 
       return { x: scaledX, y: scaledY };
     });
@@ -145,12 +131,12 @@ const RacingMap2 = () => {
         setCarPosition(dotsArray[i]);
         i++;
       } else {
-        i = 0;
+        i=0
       }
-    }, 50);
+    }, 50); // Update every 0.5 seconds
 
     return () => clearInterval(interval);
-  }, [coordinates]);
+  }, []);
 
   return (
     <div className='racing flex-col h-[28rem] border-2 border-black '>
@@ -159,25 +145,22 @@ const RacingMap2 = () => {
         style={{
           width: '583.33px',
           marginTop: '80px',
-          marginLeft: '40px',
-          position: 'relative',
+          marginLeft: '40px', 
+          position: 'relative', 
         }}
       >
-        {dots.map((dot, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'absolute',
-              top: `${dot.y}px`,
-              left: `${dot.x}px`,
-              backgroundColor: index === 0 ? 'crimson' : 'transparent',
-              width: '20px',
-              height: '20px',
-              borderRadius: '50%',
-              transition: 'all 0.5s ease',
-            }}
-          ></div>
-        ))}
+        <div
+          style={{
+            position: 'absolute',
+            top: `${carPosition.y}px`,
+            left: `${carPosition.x}px`,
+            backgroundColor: 'crimson', // Car color
+            width: '20px', // Car width
+            height: '20px', // Car height
+            borderRadius: '50%', // Make it a circle
+            transition: 'all 0.5s ease', // Smooth transition
+          }}
+        ></div>
       </div>
     </div>
   );

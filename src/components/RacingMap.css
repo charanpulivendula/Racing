@@ -1,8 +1,9 @@
 .racing {
-    background-image: url('../Assets/monzatrack.png');
+    background-image: url('../Assets/monza2.jpeg');
     display: flex;
     justify-content: center;
     align-items: center;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
 }
