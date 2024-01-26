@@ -92,6 +92,7 @@
 // export default RacingMap2;
 import React, { useState, useEffect } from 'react';
 import sampleCoordinates from '../Assets/monza_centerline.json';
+// import image from '../Assets/monzatrack2.png';
 import './RacingMap.css';
 
 const RacingMap2 = () => {
@@ -133,7 +134,7 @@ const RacingMap2 = () => {
       } else {
         i=0
       }
-    }, 50); // Update every 0.5 seconds
+    }, 1); // Update every 0.5 seconds
 
     return () => clearInterval(interval);
   }, []);
